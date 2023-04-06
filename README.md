@@ -8,7 +8,7 @@ Pre-trained models are provided and the code includes scripts for inference on n
 
 ### Fashion-mnist 
 
-![output](./output.svg)
+![output](imges/output.svg)
 
 Fashion-mnist is an image dataset that serves as a replacement for the MNIST handwritten digit dataset. It is provided by the research department of Zalando, a German fashion technology company. The dataset includes 70,000 images of various fashion items from 10 different categories. The size, format, and training/testing set split of Fashion-mnist are identical to those of the original MNIST dataset, with 60,000 training and 10,000 testing images, all in grayscale and of size 28x28 pixels. You can use this dataset directly to test the performance of your machine learning and deep learning algorithms without modifying any code.
 
@@ -38,4 +38,4 @@ The ResNet blocks are implemented using the Residual class, which takes as input
 
 After training for 20 epochs on GTX1650, here are the accuracies on the training and test sets. We can easily see that train_acc increases rapidly, while test_acc starts to plateau from the 3rd epoch onwards, indicating the onset of overfitting.
 
-![resnet-4](./resnet-4-1680705065645-5.svg)
+![resnet-4](imges/resnet-4-1680705065645-5.svg)
