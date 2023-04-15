@@ -39,7 +39,15 @@ The ResNet blocks are implemented using the Residual class, which takes as input
 After training for 20 epochs on GTX1650, here are the accuracies on the training and test sets. We can easily see that train_acc increases rapidly, while test_acc starts to plateau from the 3rd epoch onwards, indicating the onset of overfitting.
 
 ![resnet-4](imges/resnet-4-1680705065645-5.svg)
+
+
 To reduce overfitting, the following measures will be taken:
 1. Adding Dropout Layers
 Dropout layers were added after the outputs of p3_1 and p2_1 in each inception block. The following figure shows the accuracy on the training set and test set after 30 epochs. By comparing the results before and after adding dropout layers, it can be seen that overfitting has been significantly improved. However, the test accuracy did not improve, and the model's generalization ability theoretically should have been better.
+
+
 ![dropout](./imges/dropout.png)
+
+By adjusting the batch size and observing the changes in test accuracy, it can be seen that as the batch size increases, the test accuracy decreases, showing an inverse relationship.
+
+![batchsize](./imges/batchsiez.png)

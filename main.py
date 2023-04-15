@@ -1,6 +1,6 @@
 import resnet4
 import torch
-from torchmetrics import Accuracy
+
 from torch import nn, optim
 import time
 import torchvision
@@ -8,7 +8,7 @@ from torch.utils.data import DataLoader
 
 
 
-def load_data_fashion_mnist(batch_size, resize=None, root='~/桌面/FashionMNIST-PyTorch-Models/datasets'):
+def load_data_fashion_mnist(batch_size, resize=None, root='/home/mxs/Deepleaning/FashionMNIST-PyTorch-Models/FashionMNIST-PyTorch-Models/datasets'):
     """Download the fashion mnist dataset and then load into memory."""
     trans = []
     if resize:
@@ -42,7 +42,7 @@ def train(net, train_iter, test_iter, criterion, epochs, device, lr=0.001):
     print('Training on ', device)
     net.to(device)
     optimizer = optim.SGD(net.parameters(), lr, momentum=0.9, weight_decay=5e-4)
-    best_test_acc = 0.0
+    best_test_acc = 0.92
     for epoch in range(epochs):
         train_l_sum = torch.tensor([0.0], dtype=torch.float32, device=device)
         train_acc_sum = torch.tensor([0.0], dtype=torch.float32, device=device)
@@ -68,12 +68,12 @@ def train(net, train_iter, test_iter, criterion, epochs, device, lr=0.001):
         if test_acc > best_test_acc:
             print('find best! save at model_pth')
             best_test_acc = test_acc
-            torch.save(net.state_dict(), '/home/mxs/桌面/FashionMNIST-PyTorch-Models/model_pth/best_{}.pth'.format(test_acc))
+            torch.save(net.state_dict(), '/home/mxs/Deepleaning/FashionMNIST-PyTorch-Models/FashionMNIST-PyTorch-Models/model_pth/best_{}.pth'.format(test_acc))
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-batch_size = 200
+batch_size = 64
 train_iter, test_iter = load_data_fashion_mnist(batch_size, resize=96)
 net = resnet4.Resnet_4()
-lr, num_epochs = 0.001, 15
+lr, num_epochs = 0.002, 20
 criterion = nn.CrossEntropyLoss()   #交叉熵描述了两个概率分布之间的距离，交叉熵越小说明两者之间越接近
 train(net, train_iter, test_iter, criterion, num_epochs, device, lr)
